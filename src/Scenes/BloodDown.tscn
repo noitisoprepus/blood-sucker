@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="BloodDown" type="CPUParticles2D"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.25
+randomness = 1.0
+local_coords = false
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 30 )
+initial_velocity = 5.0
+angular_velocity = 25.0
+angular_velocity_random = 1.0
+color = Color( 0.611765, 0.12549, 0.12549, 1 )

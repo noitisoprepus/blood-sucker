@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Scripts/Spawner.gd" type="Script" id=1]
+[ext_resource path="res://src/Scenes/Peasants.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Scenes/Hunter.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18, 16 )
+
+[node name="Spawner" type="StaticBody2D"]
+script = ExtResource( 1 )
+peasant = ExtResource( 2 )
+peasantInit = 2
+peasantRate = 1.75
+minDelay_p = 1.0
+maxDelay_p = 5.0
+hunter = ExtResource( 3 )
+hunterInit = 3
+hunterRate = 1.25
+minDelay_h = 5.0
+maxDelay_h = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="SpawnTimer_p" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpawnTimer_h" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer_p" to="." method="_on_SpawnTimer_p_timeout"]
+[connection signal="timeout" from="SpawnTimer_h" to="." method="_on_SpawnTimer_h_timeout"]

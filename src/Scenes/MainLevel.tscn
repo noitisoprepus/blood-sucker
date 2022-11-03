@@ -1,0 +1,143 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/Sprites/bg_layer2.png" type="Texture" id=1]
+[ext_resource path="res://src/Sprites/bg_layer8.png" type="Texture" id=2]
+[ext_resource path="res://src/Sprites/bg_layer.png" type="Texture" id=3]
+[ext_resource path="res://src/Sprites/bg_layer3.png" type="Texture" id=4]
+[ext_resource path="res://src/Sprites/bg_layer5.png" type="Texture" id=5]
+[ext_resource path="res://src/Sprites/bg_layer7.png" type="Texture" id=6]
+[ext_resource path="res://src/Sprites/bg_layer4.png" type="Texture" id=7]
+[ext_resource path="res://src/Sprites/bg_layer6.png" type="Texture" id=8]
+[ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Scripts/ParallaxMotion.gd" type="Script" id=10]
+[ext_resource path="res://src/Scenes/Spawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Scenes/Despawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Scenes/BloodMeter.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Scripts/CountdownDisplay.gd" type="Script" id=14]
+[ext_resource path="res://vampire_pixel.tres" type="Theme" id=15]
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 3 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 1000, 0 )
+script = ExtResource( 10 )
+speed = -0.01
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 1 )
+offset = Vector2( -50, 0 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 1000, 0 )
+script = ExtResource( 10 )
+speed = -0.5
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource( 7 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.45, 1 )
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource( 5 )
+offset = Vector2( 0, 2 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 1 )
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource( 8 )
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.7, 1 )
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer8"]
+texture = ExtResource( 2 )
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, 8 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 8 )
+current = true
+limit_left = -150
+limit_top = -44
+limit_right = 150
+limit_bottom = 37
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 1.0
+drag_margin_right = 0.1
+drag_margin_bottom = 1.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="LeftSpawner" parent="." instance=ExtResource( 11 )]
+position = Vector2( -169, 8 )
+spawnDir = Vector2( 1, 0 )
+
+[node name="RightSpawner" parent="." instance=ExtResource( 11 )]
+position = Vector2( 169, 8 )
+spawnDir = Vector2( -1, 0 )
+
+[node name="LeftDespawner" parent="." instance=ExtResource( 12 )]
+position = Vector2( -190, 8 )
+
+[node name="RightDespawner" parent="." instance=ExtResource( 12 )]
+position = Vector2( 190, 8 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BloodMeter" parent="UI" instance=ExtResource( 13 )]
+margin_left = 90.0
+margin_top = 67.0
+margin_right = 130.0
+margin_bottom = 107.0
+rect_rotation = 90.0
+rect_scale = Vector2( 0.75, 1 )
+
+[node name="CountdownText" type="RichTextLabel" parent="UI"]
+margin_left = 88.0
+margin_top = 70.0
+margin_right = 158.0
+margin_bottom = 110.0
+theme = ExtResource( 15 )
+text = "TIME: 00:00"
+script = ExtResource( 14 )
+
+[node name="Timer" type="Timer" parent="UI/CountdownText"]
+autostart = true
+
+[connection signal="timeout" from="UI/CountdownText/Timer" to="UI/CountdownText" method="_on_Timer_timeout"]
