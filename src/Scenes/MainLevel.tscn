@@ -1,13 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://src/Sprites/bg_layer2.png" type="Texture" id=1]
-[ext_resource path="res://src/Sprites/bg_layer8.png" type="Texture" id=2]
-[ext_resource path="res://src/Sprites/bg_layer.png" type="Texture" id=3]
-[ext_resource path="res://src/Sprites/bg_layer3.png" type="Texture" id=4]
-[ext_resource path="res://src/Sprites/bg_layer5.png" type="Texture" id=5]
-[ext_resource path="res://src/Sprites/bg_layer7.png" type="Texture" id=6]
-[ext_resource path="res://src/Sprites/bg_layer4.png" type="Texture" id=7]
-[ext_resource path="res://src/Sprites/bg_layer6.png" type="Texture" id=8]
+[ext_resource path="res://src/Sprites/bg_sky.png" type="Texture" id=1]
+[ext_resource path="res://src/Sprites/bg_floor.png" type="Texture" id=2]
+[ext_resource path="res://src/Sprites/bg_trees_back.png" type="Texture" id=3]
+[ext_resource path="res://src/Sprites/bg_trees_middle.png" type="Texture" id=4]
+[ext_resource path="res://src/Sprites/bg_trees_front.png" type="Texture" id=5]
+[ext_resource path="res://src/Sprites/bg_moon.png" type="Texture" id=6]
+[ext_resource path="res://src/Sprites/bg_bushes.png" type="Texture" id=7]
+[ext_resource path="res://src/Sprites/bg_clouds.png" type="Texture" id=8]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Scripts/ParallaxMotion.gd" type="Script" id=10]
 [ext_resource path="res://src/Scenes/Spawner.tscn" type="PackedScene" id=11]
@@ -15,70 +15,85 @@
 [ext_resource path="res://src/Scenes/BloodMeter.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/Scripts/CountdownDisplay.gd" type="Script" id=14]
 [ext_resource path="res://vampire_pixel.tres" type="Theme" id=15]
+[ext_resource path="res://src/Sprites/bg_mountains.png" type="Texture" id=16]
+[ext_resource path="res://src/Sprites/bg_fog.png" type="Texture" id=17]
 
 [node name="MainLevel" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1000, 0 )
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 300, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 3 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.1, 1 )
-motion_mirroring = Vector2( 1000, 0 )
-script = ExtResource( 10 )
-speed = -0.01
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Sky"]
 texture = ExtResource( 1 )
+
+[node name="Moon" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 300, 0 )
+script = ExtResource( 10 )
+speed = -0.1
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Moon"]
+texture = ExtResource( 6 )
 offset = Vector2( -50, 0 )
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Mountains" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 1000, 0 )
+motion_mirroring = Vector2( 300, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-texture = ExtResource( 4 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Mountains"]
+texture = ExtResource( 16 )
+offset = Vector2( 0, 3 )
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Cloud" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 1000, 0 )
+motion_mirroring = Vector2( 300, 0 )
 script = ExtResource( 10 )
-speed = -0.5
+speed = 0.5
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
-texture = ExtResource( 7 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Cloud"]
+texture = ExtResource( 8 )
+offset = Vector2( 0, 3 )
 
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Trees_Back" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.45, 1 )
-motion_mirroring = Vector2( 1000, 0 )
+motion_mirroring = Vector2( 300, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
-texture = ExtResource( 5 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Trees_Back"]
+texture = ExtResource( 3 )
 offset = Vector2( 0, 2 )
 
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Fog" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.525, 1 )
+motion_mirroring = Vector2( 300, 0 )
+script = ExtResource( 10 )
+speed = 1.25
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Fog"]
+texture = ExtResource( 17 )
+offset = Vector2( 0, 2 )
+
+[node name="Trees_Middle" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.6, 1 )
-motion_mirroring = Vector2( 1000, 0 )
+motion_mirroring = Vector2( 300, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
-texture = ExtResource( 8 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Trees_Middle"]
+texture = ExtResource( 4 )
 
-[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Trees_Front" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.675, 1 )
+motion_mirroring = Vector2( 300, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Trees_Front"]
+texture = ExtResource( 5 )
+
+[node name="Bushes" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.7, 1 )
-motion_mirroring = Vector2( 1000, 0 )
+motion_mirroring = Vector2( 300, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer7"]
-texture = ExtResource( 6 )
-
-[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1000, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer8"]
-texture = ExtResource( 2 )
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Bushes"]
+texture = ExtResource( 7 )
 
 [node name="Spawns" type="Node2D" parent="."]
 
@@ -118,7 +133,17 @@ position = Vector2( -190, 8 )
 [node name="RightDespawner" parent="." instance=ExtResource( 12 )]
 position = Vector2( 190, 8 )
 
+[node name="ParallaxForeground" type="ParallaxBackground" parent="."]
+layer = 1
+
+[node name="Floor" type="ParallaxLayer" parent="ParallaxForeground"]
+motion_mirroring = Vector2( 1000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxForeground/Floor"]
+texture = ExtResource( 2 )
+
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="BloodMeter" parent="UI" instance=ExtResource( 13 )]
 margin_left = 90.0

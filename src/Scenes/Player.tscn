@@ -158,8 +158,8 @@ position = Vector2( 1, -4 )
 amount = 10
 
 [node name="HurtArea" type="Area2D" parent="Character"]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtArea"]
 position = Vector2( 0.5, 0.5 )
