@@ -1,24 +1,12 @@
-extends Area2D
+extends "res://src/Scripts/NPC.gd"
 
 onready var anim = $AnimationPlayer
-onready var col = $Character
-onready var skin = $Character/Sprite
-onready var decal = $Character/Sprite/BloodDecal
-onready var blood = $Character/BloodDown
-onready var timer = $Timer
 onready var poolTimer = $PoolTimer
 
-export var minSpeed: float = 0
-export var maxSpeed: float = 1
 export var minBlood: int = 5
 export var maxBlood: int = 10
-export(Array, Texture) var skins
-export(Array, Texture) var decals
 
-var random = RandomNumberGenerator.new()
-var dir: Vector2
 var bloodAva: int
-var moveSpeed: float
 var panicMode: bool = false
 
 
@@ -35,12 +23,8 @@ func _process(delta):
 
 
 func reset():
-	decal.hide()
-	random.randomize()
-	skin.texture = skins[random.randi_range(0, skins.size() - 1)]
-	decal.texture = decals[random.randi_range(0, decals.size() - 1)]
+	_reset()
 	bloodAva = random.randi_range(minBlood, maxBlood)
-	moveSpeed = random.randf_range(minSpeed, maxSpeed)
 	anim.play("RESET")
 	yield(anim, "animation_finished")
 	panic_mode(dir)
@@ -48,33 +32,27 @@ func reset():
 
 
 func get_sucked() -> void:
+	dead = true
 	panicMode = false
-	timer.start()
-	col.disabled = true
-	blood.emitting = true
+	character.disabled = true
+	bloodFX.emitting = true
 	decal.show()
+	anim.play("death")
+	yield(anim, "animation_finished")
+	poolTimer.start()
 
 
 func _on_player_death() -> void:
-	pass
+	if dead:
+		return
+	anim.play("default")
+	moveSpeed = moveSpeed * 0.4
 
 
 func panic_mode(direction: Vector2) -> void:
 	moveSpeed = abs(moveSpeed) * direction.x
 	panicMode = true
 	anim.play("panic")
-
-
-func apply_animation() -> void:
-	if (moveSpeed > 0):
-		col.scale.x = 1
-	elif (moveSpeed < 0):
-		col.scale.x = -1
-
-
-func _on_Timer_timeout():
-	anim.play("death")
-	poolTimer.start()
 
 
 func _on_PoolTimer_timeout():

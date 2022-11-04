@@ -10,7 +10,7 @@
 radius = 6.0
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 2, 15.5 )
+extents = Vector2( 3, 15.5 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 2.5, 15.5 )
@@ -116,7 +116,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "suck_stand"
-length = 0.8
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Character/Sprite:frame")
 tracks/0/interp = 1
@@ -124,24 +124,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 2, 0 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.8 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "on_suck_finished"
-} ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -170,7 +156,6 @@ shape = SubResource( 8 )
 [node name="BloodSplat" parent="Character" instance=ExtResource( 3 )]
 position = Vector2( 1, -4 )
 amount = 10
-color = Color( 0.611765, 0.12549, 0.12549, 1 )
 
 [node name="HurtArea" type="Area2D" parent="Character"]
 collision_layer = 8

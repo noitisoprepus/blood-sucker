@@ -67,7 +67,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "death"
-length = 0.5
+length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("Character:rotation_degrees")
 tracks/0/interp = 1
@@ -75,7 +75,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0.3, 0.7 ),
 "transitions": PoolRealArray( 1.41421, 0.757858 ),
 "update": 0,
 "values": [ 0.0, -90.0 ]
@@ -87,7 +87,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0.3, 0.7 ),
 "transitions": PoolRealArray( 1.27456, 0.63728 ),
 "update": 0,
 "values": [ Vector2( 1, 2 ), Vector2( 1, 14 ) ]
@@ -134,11 +134,15 @@ collision_mask = 18
 monitoring = false
 script = ExtResource( 3 )
 minSpeed = 50.0
-maxSpeed = 75.0
-minBlood = 15
-maxBlood = 20
+maxSpeed = 65.0
 skins = [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ) ]
 decals = [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 9 ) ]
+character = NodePath("Character")
+skin = NodePath("Character/Sprite")
+decal = NodePath("Character/Sprite/BloodDecal")
+bloodFX = NodePath("Character/BloodDown")
+minBlood = 15
+maxBlood = 20
 
 [node name="Character" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 2 )
@@ -162,11 +166,7 @@ anims/death = SubResource( 3 )
 anims/default = SubResource( 4 )
 anims/panic = SubResource( 5 )
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="PoolTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="PoolTimer" to="." method="_on_PoolTimer_timeout"]

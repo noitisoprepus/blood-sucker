@@ -119,9 +119,13 @@ collision_mask = 20
 monitoring = false
 script = ExtResource( 2 )
 minSpeed = 30.0
-maxSpeed = 60.0
+maxSpeed = 50.0
 skins = [ ExtResource( 1 ) ]
 decals = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+character = NodePath("Character")
+skin = NodePath("Character/Sprite")
+decal = NodePath("Character/Sprite/BloodDecal")
+bloodFX = NodePath("Character/BloodSplat")
 
 [node name="Character" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )

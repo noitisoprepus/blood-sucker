@@ -96,15 +96,21 @@ func apply_movement_animation():
 func _suck() -> void:
 	isSucking = true
 	canSuck = false
+	canAttack = false
 	instinct.hide()
 
-	anim.play("suck_stand")
 	prey.get_sucked()
 	var newBlood = blood + prey.bloodAva
 	blood = clamp(newBlood, 0, 100)
 	prey = null
 	suckAlert.monitoring = false
+
+	anim.play("suck_stand")
 	yield(anim, "animation_finished")
+	suckAlert.monitoring = true
+	emit_signal("drank_blood", blood)
+	isSucking = false
+	canAttack = true
 
 
 func _slash() -> void:
@@ -120,12 +126,6 @@ func _slash() -> void:
 	isAttacking = false
 	canSuck = true
 	attackTimer.start()
-
-
-func on_suck_finished() -> void:
-	suckAlert.monitoring = true
-	emit_signal("drank_blood", blood)
-	isSucking = false
 
 
 func _dead() -> void:
