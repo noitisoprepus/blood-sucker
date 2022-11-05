@@ -54,7 +54,7 @@ speed = 0.5
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Cloud"]
 texture = ExtResource( 8 )
-offset = Vector2( 0, 3 )
+offset = Vector2( 0, -3 )
 
 [node name="Trees_Back" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.45, 1 )

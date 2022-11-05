@@ -12,7 +12,10 @@ script = ExtResource( 3 )
 [node name="TextureProgress" type="TextureProgress" parent="."]
 margin_right = 40.0
 margin_bottom = 83.0
-value = 75.0
+value = 50.0
 texture_over = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
+texture_progress_offset = Vector2( 0, 9 )
 fill_mode = 3
+
+[node name="Tween" type="Tween" parent="."]
