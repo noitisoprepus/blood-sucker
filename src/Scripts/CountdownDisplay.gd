@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends Label
 
 var countdown: int = 120
 
@@ -9,7 +9,7 @@ func _ready():
 
 func _process(delta):
 	if (countdown <= 0):
-		set_text("TIME: 00:00")
+		set_text("TIME 00:00")
 		SceneTransition.show_completion_screen()
 		set_process(false)
 	
@@ -23,7 +23,7 @@ func _process(delta):
 		sec = "0" + str(s)
 	if m <= 9:
 		minutes = "0" + str(m)
-	set_text("TIME: " + str(minutes) + ":" + str(sec))
+	set_text("TIME " + str(minutes) + ":" + str(sec))
 
 
 func _on_player_death():
