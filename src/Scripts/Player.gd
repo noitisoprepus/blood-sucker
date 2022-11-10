@@ -10,7 +10,7 @@ onready var slash = $Character/Attack_Slash
 onready var slashAnim = $Character/Attack_Slash/AnimationPlayer
 onready var attackTimer = $AttackTimer
 onready var anim = $AnimationPlayer
-onready var instinct = $ClipartPanic
+onready var instinct = $SuckInstinct
 onready var bloodSplat = $Character/BloodSplat
 
 export var maxSpeed: float = 100
@@ -97,7 +97,7 @@ func _suck() -> void:
 	isSucking = true
 	canSuck = false
 	canAttack = false
-	instinct.hide()
+	instinct.modulate = Color(255, 0, 0) # RED
 
 	prey.get_sucked()
 	var newBlood = blood + prey.bloodAva
@@ -107,6 +107,8 @@ func _suck() -> void:
 
 	anim.play("suck_stand")
 	yield(anim, "animation_finished")
+	instinct.hide()
+	instinct.modulate = Color(255, 255, 255) # WHITE
 	suckAlert.monitoring = true
 	emit_signal("drank_blood", blood)
 	isSucking = false
@@ -141,15 +143,21 @@ func _dead() -> void:
 	SceneTransition.show_retry_screen()
 
 
+func _instinct_hint() -> void:
+	yield(get_tree(), "idle_frame")
+	instinct.show()
+
+
 func _on_SuckAlert_area_entered(area:Area2D):
 	if "Peasants" in area.name:
 		canSuck = true
-		instinct.show()
+		# Makes sure that the hint is shown before being able to suck
+		yield(_instinct_hint(), "completed")
 		prey = area
 
 
 func _on_SuckAlert_area_exited(area:Area2D):
-	if "Peasants" in area.name:
+	if "Peasants" in area.name and !isSucking:
 		canSuck = false
 		instinct.hide()
 		if prey == area:

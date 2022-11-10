@@ -25,6 +25,7 @@ func _process(delta):
 func reset():
 	_reset()
 	bloodAva = random.randi_range(minBlood, maxBlood)
+	character.disabled = false
 	anim.play("RESET")
 	yield(anim, "animation_finished")
 	panic_mode(dir)

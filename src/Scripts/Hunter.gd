@@ -27,20 +27,25 @@ func reset():
 	anim.play("RESET")
 	yield(anim, "animation_finished")
 	attack_mode(dir)
-	attackArea.set_collision_layer_bit(3, true)
-	attackArea.set_collision_mask_bit(3, true)
+	toggle_collisions(true)
 	show()
 
 
 func get_killed() -> void:
 	dead = true
 	attackMode = false
-	attackArea.set_collision_layer_bit(3, false)
-	attackArea.set_collision_mask_bit(3, false)
+	toggle_collisions(false)
 	bloodFX.emitting = true
 	anim.play("death")
 	decal.show()
 	poolTimer.start()
+
+
+func toggle_collisions(value: bool) -> void:
+	attackArea.set_collision_layer_bit(3, value)
+	attackArea.set_collision_mask_bit(3, value)
+	self.set_collision_layer_bit(2, value)
+	self.set_collision_mask_bit(2, value)
 
 
 func _on_player_death() -> void:
