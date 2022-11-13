@@ -97,7 +97,7 @@ func _suck() -> void:
 	isSucking = true
 	canSuck = false
 	canAttack = false
-	instinct.modulate = Color(255, 0, 0) # RED
+	# play instinct animation
 
 	prey.get_sucked()
 	var newBlood = blood + prey.bloodAva
@@ -108,7 +108,7 @@ func _suck() -> void:
 	anim.play("suck_stand")
 	yield(anim, "animation_finished")
 	instinct.hide()
-	instinct.modulate = Color(255, 255, 255) # WHITE
+	# instinct play default animation
 	suckAlert.monitoring = true
 	emit_signal("drank_blood", blood)
 	isSucking = false
@@ -136,7 +136,7 @@ func _dead() -> void:
 	hurtArea.set_deferred("monitoring", false)
 	suckAlert.set_deferred("monitoring", false)
 	instinct.hide()
-	bloodSplat.amount = 10 + blood
+	bloodSplat.amount = 15 + (blood / 2)
 	bloodSplat.emitting = true
 	anim.play("death")
 	yield(anim, "animation_finished")
