@@ -10,7 +10,8 @@ onready var slash = $Character/Attack_Slash
 onready var slashAnim = $Character/Attack_Slash/AnimationPlayer
 onready var attackTimer = $AttackTimer
 onready var anim = $AnimationPlayer
-onready var instinct = $SuckInstinct
+onready var instinct = $Character/SuckInstinct
+onready var instinctAnim = $Character/SuckInstinct/InstinctAnimator
 onready var bloodSplat = $Character/BloodSplat
 
 export var maxSpeed: float = 100
@@ -97,7 +98,7 @@ func _suck() -> void:
 	isSucking = true
 	canSuck = false
 	canAttack = false
-	# play instinct animation
+	instinctAnim.play("active")
 
 	prey.get_sucked()
 	var newBlood = blood + prey.bloodAva
@@ -108,7 +109,7 @@ func _suck() -> void:
 	anim.play("suck_stand")
 	yield(anim, "animation_finished")
 	instinct.hide()
-	# instinct play default animation
+	instinctAnim.play("RESET")
 	suckAlert.monitoring = true
 	emit_signal("drank_blood", blood)
 	isSucking = false

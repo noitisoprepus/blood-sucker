@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Sprites/dracula_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Sprites/clipart_panic.png" type="Texture" id=2]
@@ -14,6 +14,38 @@ extents = Vector2( 3, 15.5 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 2.5, 15.5 )
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "active"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 2.07053, 0.517632 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -169,16 +201,21 @@ shape = SubResource( 9 )
 position = Vector2( 17, 0 )
 scale = Vector2( 2.5, 2.5 )
 
+[node name="SuckInstinct" type="Sprite" parent="Character"]
+position = Vector2( -11, -20 )
+texture = ExtResource( 2 )
+offset = Vector2( 11.0645, 14.9355 )
+
+[node name="InstinctAnimator" type="AnimationPlayer" parent="Character/SuckInstinct"]
+anims/RESET = SubResource( 11 )
+anims/active = SubResource( 12 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/block = SubResource( 4 )
 anims/death = SubResource( 10 )
 anims/default = SubResource( 5 )
 anims/suck_stand = SubResource( 7 )
-
-[node name="SuckInstinct" type="Sprite" parent="."]
-position = Vector2( 0, -5 )
-texture = ExtResource( 2 )
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
