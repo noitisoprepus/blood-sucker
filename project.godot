@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="Mini Jam 118"
-run/main_scene="res://src/Scenes/Game.tscn"
+run/main_scene="res://src/Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SceneTransition="*res://src/Scenes/SceneTransition.tscn"
+BackgroundMusic="*res://src/Scenes/BackgroundMusic.tscn"
 
 [display]
 
