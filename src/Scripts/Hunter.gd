@@ -1,5 +1,7 @@
 extends "res://src/Scripts/NPC.gd"
 
+signal enemyDead(enemy)
+
 onready var anim = $AnimationPlayer
 onready var attackArea = $Character/AttackArea
 onready var poolTimer = $PoolTimer
@@ -15,9 +17,6 @@ func _ready():
 
 func _process(delta):
 	if attackMode:
-#		if !visible:
-#			attackArea.set_collision_layer_bit(3, false)
-#			attackArea.set_collision_mask_bit(3, false)
 		position.x += moveSpeed * delta
 		apply_animation()
 
@@ -32,6 +31,7 @@ func reset():
 
 
 func get_killed() -> void:
+	emit_signal("enemyDead", self)
 	dead = true
 	attackMode = false
 	toggle_collisions(false)

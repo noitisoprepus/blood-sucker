@@ -10,7 +10,6 @@ export(sideEnums) var side
 onready var indicator = $TextureRect
 
 var enemies: Array
-var enemiesOnScreen: Array
 
 
 func _ready():
@@ -22,15 +21,19 @@ func _ready():
 
 func _process(delta):
 	if !enemies.empty():
-		for i in range(enemies.size()):
+		for i in enemies.size():
 			_check_tracker(enemies[i])
 
 
 func _add_tracker(enemy) -> void:
+	enemy.connect("enemyDead", self, "_remove_tracker", [], 4)
 	enemies.append(enemy)
 
 
-# TODO: Take note of enemies onscreen and enemies offscreen when toggling indicator
+func _remove_tracker(enemy) -> void:
+	enemies.erase(enemy)
+
+
 func _check_tracker(enemy) -> void:
 	match side:
 		0:
@@ -38,13 +41,15 @@ func _check_tracker(enemy) -> void:
 			if enemy.position.x < distance:
 				if !indicator.visible:
 					indicator.show()
-			else:
-				enemiesOnScreen.append(enemy)
-				indicator.hide()
+				return
 		1:
 			var distance = camera.position.x + (screenWidth / 2)
 			if enemy.position.x > distance:
 				if !indicator.visible:
 					indicator.show()
-			else:
-				indicator.hide()
+				return
+	
+	# When enemy is within camera bounds
+	_remove_tracker(enemy)
+	if enemies.size() < 1:
+		indicator.hide()
