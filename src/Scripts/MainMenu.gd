@@ -1,5 +1,9 @@
 extends Control
 
-# Start button
-func _on_Button_pressed():
+
+func _on_PlayButton_pressed():
 	SceneTransition.start_main_level()
+
+
+func _on_AboutButton_pressed():
+	SceneTransition.show_about_section()

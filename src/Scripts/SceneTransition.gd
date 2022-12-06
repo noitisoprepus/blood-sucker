@@ -27,6 +27,11 @@ func show_retry_screen() -> void:
 	anim.play(currentTrans)
 
 
+func show_about_section() -> void:
+	anim.play("show_about_section")
+
+
+# Restart button
 func _on_Button_pressed():
 	if !isPlaying:
 		isPlaying = true
@@ -35,3 +40,7 @@ func _on_Button_pressed():
 		yield(anim, "animation_finished")
 		isPlaying = false
 		currentTrans = ""
+
+
+func _on_BackButton_pressed():
+	anim.play_backwards("show_about_section")

@@ -7,7 +7,8 @@ export(float) var screenWidth: float
 enum sideEnums {LEFT, RIGHT}	# LEFT - 0; RIGHT - 1
 export(sideEnums) var side
 
-onready var indicator = $TextureRect
+onready var indicator = $WarningSign
+onready var anim = $AnimationPlayer
 
 var enemies: Array
 
@@ -41,15 +42,18 @@ func _check_tracker(enemy) -> void:
 			if enemy.position.x < distance:
 				if !indicator.visible:
 					indicator.show()
+					anim.play("Blink")
 				return
 		1:
 			var distance = camera.position.x + (screenWidth / 2)
 			if enemy.position.x > distance:
 				if !indicator.visible:
 					indicator.show()
+					anim.play("Blink")
 				return
 	
 	# When enemy is within camera bounds
 	_remove_tracker(enemy)
 	if enemies.size() < 1:
 		indicator.hide()
+		anim.play("RESET")

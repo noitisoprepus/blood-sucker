@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Sprites/bg_sky.png" type="Texture" id=1]
 [ext_resource path="res://src/Sprites/bg_floor.png" type="Texture" id=2]
@@ -19,14 +19,9 @@
 [ext_resource path="res://src/Sprites/bg_fog.png" type="Texture" id=17]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://src/Scenes/EnemyOffscreenIndicator.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/Scenes/FPSCounter.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=1]
-size = 7
-font_data = ExtResource( 18 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 4
+size = 8
 font_data = ExtResource( 18 )
 
 [node name="MainLevel" type="Node2D"]
@@ -173,10 +168,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -72.0
-margin_top = -44.0
-margin_right = -2.0
-margin_bottom = -5.0
+margin_left = -61.0
+margin_top = -13.0
+margin_right = -3.0
+margin_bottom = -2.0
 rect_pivot_offset = Vector2( 35, 20 )
 theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 1 )
@@ -188,37 +183,22 @@ script = ExtResource( 14 )
 [node name="Timer" type="Timer" parent="UI/CountdownText"]
 autostart = true
 
-[node name="Label" type="Label" parent="UI"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -80.0
-margin_top = -15.0
-margin_right = -9.0
-margin_bottom = -1.0
-theme = ExtResource( 15 )
-custom_fonts/font = SubResource( 2 )
-text = "HIGHSCORE: NA"
-align = 2
-valign = 2
-
 [node name="LeftEnemyOffscreenIndicator" parent="UI" instance=ExtResource( 19 )]
+margin_top = 43.0
+margin_bottom = 43.0
 camera = NodePath("../../Camera2D")
 spawner = NodePath("../../LeftSpawner")
 screenWidth = 144.0
 
 [node name="RightEnemyOffscreenIndicator" parent="UI" instance=ExtResource( 19 )]
 margin_left = 144.0
+margin_top = 43.0
 margin_right = 144.0
+margin_bottom = 43.0
 rect_scale = Vector2( -1, 1 )
 camera = NodePath("../../Camera2D")
 spawner = NodePath("../../RightSpawner")
 screenWidth = 144.0
 side = 1
-
-[node name="FPS" parent="UI" instance=ExtResource( 20 )]
-margin_top = 13.0
-margin_bottom = 13.0
 
 [connection signal="timeout" from="UI/CountdownText/Timer" to="UI/CountdownText" method="_on_Timer_timeout"]

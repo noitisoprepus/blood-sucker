@@ -1,6 +1,6 @@
 extends Label
 
-var countdown: int = 120
+export var countdown: int = 120
 
 func _ready():
 	var player = get_parent().get_parent().get_node("Player")

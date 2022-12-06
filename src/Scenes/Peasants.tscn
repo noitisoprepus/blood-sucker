@@ -141,8 +141,8 @@ character = NodePath("Character")
 skin = NodePath("Character/Sprite")
 decal = NodePath("Character/Sprite/BloodDecal")
 bloodFX = NodePath("Character/BloodDown")
-minBlood = 15
-maxBlood = 20
+minBlood = 10
+maxBlood = 15
 
 [node name="Character" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 2 )

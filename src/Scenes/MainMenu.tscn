@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://src/Sprites/Title.png" type="Texture" id=1]
+[ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://vampire_pixel.tres" type="Theme" id=2]
 [ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=3]
 [ext_resource path="res://src/Sprites/main_menu_bg.png" type="Texture" id=4]
+[ext_resource path="res://src/Sprites/button_base_normal.png" type="Texture" id=5]
+[ext_resource path="res://src/Sprites/button_base_pressed.png" type="Texture" id=6]
+[ext_resource path="res://src/Sprites/Title.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 7
+font_data = ExtResource( 1 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -29,29 +36,49 @@ margin_top = -16.5
 margin_right = 153.0
 margin_bottom = 15.5
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
+texture = ExtResource( 7 )
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="PlayButton" type="TextureButton" parent="Panel"]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -12.0
-margin_top = -28.0
-margin_right = 20.0
-margin_bottom = -8.0
-rect_scale = Vector2( 0.75, 0.75 )
-theme = ExtResource( 2 )
-text = "START"
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = 1.5
+margin_right = 16.0
+margin_bottom = 10.5
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
 
-[node name="Label" type="Label" parent="Panel/Button"]
-visible = false
+[node name="Label" type="Label" parent="Panel/PlayButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
-text = "START"
+custom_fonts/font = SubResource( 1 )
+text = "PLAY"
 align = 1
 valign = 1
-autowrap = true
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]
+[node name="AboutButton" type="TextureButton" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = 11.5
+margin_right = 16.0
+margin_bottom = 20.5
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Panel/AboutButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
+text = "ABOUT"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="Panel/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Panel/AboutButton" to="." method="_on_AboutButton_pressed"]
