@@ -1,4 +1,4 @@
-# BLOOD SUCKER
+# BLOODSUCKER
 
 You are a vampire with blood manipulation powers. Suck blood out of the peasants and defend yourself from vampire hunters.
 
