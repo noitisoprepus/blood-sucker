@@ -9,16 +9,12 @@ export var spawnDir:= Vector2.ZERO
 
 # Peasant
 export var peasant: PackedScene
-export var peasantInit: int
-export var peasantRate: float
 export var minDelay_p: float
 export var maxDelay_p: float
 var toSpawn_p: int = 0
 
 # Hunter
 export var hunter: PackedScene
-export var hunterInit: int
-export var hunterRate: float
 export var minDelay_h: float
 export var maxDelay_h: float
 var toSpawn_h: int = 0

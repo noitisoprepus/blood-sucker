@@ -13,4 +13,4 @@ gravity = Vector2( 0, 50 )
 initial_velocity = 5.0
 angular_velocity = 25.0
 angular_velocity_random = 1.0
-color = Color( 0.611765, 0.12549, 0.12549, 1 )
+color = Color( 0.592157, 0.113725, 0.172549, 1 )

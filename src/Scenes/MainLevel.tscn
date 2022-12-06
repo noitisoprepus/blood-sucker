@@ -137,6 +137,9 @@ spawnDir = Vector2( 1, 0 )
 [node name="RightSpawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 169, 8 )
 spawnDir = Vector2( -1, 0 )
+maxDelay_p = 6.0
+minDelay_h = 4.0
+maxDelay_h = 7.0
 
 [node name="LeftDespawner" parent="." instance=ExtResource( 12 )]
 position = Vector2( -190, 8 )
