@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://vampire_pixel.tres" type="Theme" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://src/Sprites/button_base_normal.png" type="Texture" id=5]
 [ext_resource path="res://src/Sprites/button_base_pressed.png" type="Texture" id=6]
 [ext_resource path="res://src/Sprites/Title.png" type="Texture" id=7]
+[ext_resource path="res://src/Scenes/BaseButton.gd" type="Script" id=8]
+[ext_resource path="res://src/Sounds/sfx_button_click.mp3" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 7
@@ -49,6 +51,7 @@ margin_right = 16.0
 margin_bottom = 10.5
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
+script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="Panel/PlayButton"]
 anchor_right = 1.0
@@ -58,6 +61,9 @@ custom_fonts/font = SubResource( 1 )
 text = "PLAY"
 align = 1
 valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/PlayButton"]
+stream = ExtResource( 9 )
 
 [node name="AboutButton" type="TextureButton" parent="Panel"]
 anchor_left = 0.5
@@ -70,6 +76,7 @@ margin_right = 16.0
 margin_bottom = 20.5
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
+script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="Panel/AboutButton"]
 anchor_right = 1.0
@@ -80,5 +87,10 @@ text = "ABOUT"
 align = 1
 valign = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/AboutButton"]
+stream = ExtResource( 9 )
+
 [connection signal="pressed" from="Panel/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Panel/PlayButton" to="Panel/PlayButton" method="_on_Button_pressed"]
 [connection signal="pressed" from="Panel/AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="Panel/AboutButton" to="Panel/AboutButton" method="_on_Button_pressed"]

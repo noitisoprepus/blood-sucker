@@ -13,6 +13,9 @@ onready var anim = $AnimationPlayer
 onready var instinct = $Character/SuckInstinct
 onready var instinctAnim = $Character/SuckInstinct/InstinctAnimator
 onready var bloodSplat = $Character/BloodSplat
+onready var suckSFX = $Character/SuckAlert/AudioStreamPlayer
+onready var stabSFX = $Character/HurtArea/AudioStreamPlayer
+onready var slashSFX = $Character/Attack_Slash/AudioStreamPlayer
 
 export var maxSpeed: float = 100
 export var accel: float = 200
@@ -106,6 +109,7 @@ func _suck() -> void:
 	prey = null
 	suckAlert.monitoring = false
 
+	suckSFX.play()
 	anim.play("suck_stand")
 	yield(anim, "animation_finished")
 	instinct.hide()
@@ -123,6 +127,7 @@ func _slash() -> void:
 	blood = clamp(newBlood, 0, 100)
 	emit_signal("drank_blood", blood)
 	slash.show()
+	slashSFX.play()
 	slashAnim.play("slash")
 	yield(slashAnim, "animation_finished")
 	slash.hide()
@@ -134,14 +139,19 @@ func _slash() -> void:
 func _dead() -> void:
 	dead = true
 	emit_signal("death")
-	hurtArea.set_deferred("monitoring", false)
-	suckAlert.set_deferred("monitoring", false)
+	invulnerable()
 	instinct.hide()
 	bloodSplat.amount = 15 + (blood / 2)
 	bloodSplat.emitting = true
+	stabSFX.play()
 	anim.play("death")
 	yield(anim, "animation_finished")
 	SceneTransition.show_retry_screen()
+
+
+func invulnerable() -> void:
+	hurtArea.set_deferred("monitoring", false)
+	suckAlert.set_deferred("monitoring", false)
 
 
 func _instinct_hint() -> void:

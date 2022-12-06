@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_blood_squeeze.mp3-52944fbfbdd4edb81eb5d11c920b7aee.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/sfx_blood_squeeze.mp3"
+dest_files=[ "res://.import/sfx_blood_squeeze.mp3-52944fbfbdd4edb81eb5d11c920b7aee.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

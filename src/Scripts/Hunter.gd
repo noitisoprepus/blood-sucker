@@ -36,6 +36,7 @@ func get_killed() -> void:
 	attackMode = false
 	toggle_collisions(false)
 	bloodFX.emitting = true
+	$AudioStreamPlayer.play()
 	anim.play("death")
 	decal.show()
 	poolTimer.start()

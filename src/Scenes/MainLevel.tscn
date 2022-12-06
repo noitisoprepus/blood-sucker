@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Sprites/bg_sky.png" type="Texture" id=1]
 [ext_resource path="res://src/Sprites/bg_floor.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/Sprites/bg_fog.png" type="Texture" id=17]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://src/Scenes/EnemyOffscreenIndicator.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/Sounds/sfx_tick.mp3" type="AudioStream" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -182,6 +183,11 @@ script = ExtResource( 14 )
 
 [node name="Timer" type="Timer" parent="UI/CountdownText"]
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/CountdownText"]
+stream = ExtResource( 20 )
+volume_db = -25.0
+autoplay = true
 
 [node name="LeftEnemyOffscreenIndicator" parent="UI" instance=ExtResource( 19 )]
 margin_top = 43.0

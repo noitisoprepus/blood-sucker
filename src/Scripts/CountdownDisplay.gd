@@ -2,8 +2,11 @@ extends Label
 
 export var countdown: int = 120
 
+var player
+
+
 func _ready():
-	var player = get_parent().get_parent().get_node("Player")
+	player = get_parent().get_parent().get_node("Player")
 	player.connect("death", self, "_on_player_death")
 
 
@@ -12,6 +15,8 @@ func _process(delta):
 		set_text("TIME 00:00")
 		SceneTransition.show_completion_screen()
 		set_process(false)
+		$AudioStreamPlayer.stop()
+		player.invulnerable()
 	
 	var m: int = countdown / 60
 	var s: int = countdown % 60
@@ -28,6 +33,7 @@ func _process(delta):
 
 func _on_player_death():
 	set_process(false)
+	$AudioStreamPlayer.stop()
 
 
 func _on_Timer_timeout():

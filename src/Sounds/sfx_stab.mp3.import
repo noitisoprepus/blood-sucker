@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_stab.mp3-839a1cbbb31fab34dd67f9d0452b5c66.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/sfx_stab.mp3"
+dest_files=[ "res://.import/sfx_stab.mp3-839a1cbbb31fab34dd67f9d0452b5c66.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

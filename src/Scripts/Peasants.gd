@@ -38,6 +38,7 @@ func get_sucked() -> void:
 	character.disabled = true
 	bloodFX.emitting = true
 	decal.show()
+	$AudioStreamPlayer.play()
 	anim.play("death")
 	yield(anim, "animation_finished")
 	poolTimer.start()

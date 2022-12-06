@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sfx_bite.mp3-1882d479da892f2ff36690ed9933e6fe.mp3str"
+
+[deps]
+
+source_file="res://src/Sounds/sfx_bite.mp3"
+dest_files=[ "res://.import/sfx_bite.mp3-1882d479da892f2ff36690ed9933e6fe.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

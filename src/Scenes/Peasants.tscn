@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Sprites/peasant_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Scenes/BloodDown.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Sprites/peasant3_spritesheet.png" type="Texture" id=7]
 [ext_resource path="res://src/Sprites/blood_peasant.png" type="Texture" id=8]
 [ext_resource path="res://src/Sprites/blood_peasant3.png" type="Texture" id=9]
+[ext_resource path="res://src/Sounds/sfx_blood_squeeze.mp3" type="AudioStream" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -169,5 +170,9 @@ anims/panic = SubResource( 5 )
 [node name="PoolTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -15.0
 
 [connection signal="timeout" from="PoolTimer" to="." method="_on_PoolTimer_timeout"]

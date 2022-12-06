@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Sprites/dracula_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Sprites/clipart_panic.png" type="Texture" id=2]
 [ext_resource path="res://src/Scenes/BloodSplat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://src/Scenes/Attack_Slash.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Sounds/sfx_stab.mp3" type="AudioStream" id=6]
+[ext_resource path="res://src/Sounds/sfx_bite.mp3" type="AudioStream" id=7]
+[ext_resource path="res://src/Sounds/sfx_swing.mp3" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 6.0
@@ -185,6 +188,10 @@ collision_mask = 2
 position = Vector2( 5, 0.5 )
 shape = SubResource( 8 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Character/SuckAlert"]
+stream = ExtResource( 7 )
+volume_db = -15.0
+
 [node name="BloodSplat" parent="Character" instance=ExtResource( 3 )]
 position = Vector2( 1, -4 )
 amount = 10
@@ -197,9 +204,16 @@ collision_mask = 8
 position = Vector2( 0.5, 0.5 )
 shape = SubResource( 9 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Character/HurtArea"]
+stream = ExtResource( 6 )
+volume_db = -15.0
+
 [node name="Attack_Slash" parent="Character" instance=ExtResource( 5 )]
 position = Vector2( 17, 0 )
 scale = Vector2( 2.5, 2.5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Character/Attack_Slash"]
+stream = ExtResource( 8 )
 
 [node name="SuckInstinct" type="Sprite" parent="Character"]
 position = Vector2( -11, -20 )
